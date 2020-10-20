@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useDispatch} from 'react-redux';
 
-import DefaultItemImage from '../../assets/SVG/shopping-bag.svg';
-
+import ButtonImage from '../atoms/ButtonImage';
 import DivImage from '../atoms/DivImage';
+
+import DeleteIcon from '../../assets/SVG/delete.svg';
+import DefaultItemImage from '../../assets/SVG/shopping-bag.svg';
+import { deleteItemFromGroceryList } from '../../actions/action';
 
 const Wrapper = styled.div`
     display:flex;
@@ -15,11 +19,19 @@ const Wrapper = styled.div`
 `
 
 const GroceryListItem = ({listItem}) => {
-return(
-    <Wrapper>
-        <DivImage image={DefaultItemImage} />
-        <p>{listItem.title}</p>
-    </Wrapper>
+
+    const dispatch = useDispatch();
+
+    const deleteItemHandler = () => {
+        dispatch(deleteItemFromGroceryList(listItem.id));
+    }
+
+    return(
+        <Wrapper>
+            <DivImage image={DefaultItemImage} />
+            <p>{listItem.title}</p>
+            <ButtonImage image={DeleteIcon} onClickFn={deleteItemHandler}/>
+        </Wrapper>
     );
 }
 
