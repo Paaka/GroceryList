@@ -27,7 +27,35 @@ function reducer(state = defualtState, action){
                 groceryList:state.groceryList.filter(item => item.id !== action.payload.id)
             }
         }
-        
+        case types.UPDATE_ITEM_TITLE_IN_GROCERY_LIST:{
+            return {
+                ...state,
+                groceryList: state.groceryList.map(item => {
+                    if(item.id=== action.payload.id){
+                        return {
+                            ...item,
+                            title: action.payload.newTitle,
+                        }
+                    }
+                    return item;
+                })
+            }
+        }
+        case types.UPDATE_ITEM_COMPLETION_IN_GROCERY_LIST:{
+            return {
+                ...state,
+                groceryList: state.groceryList.map(groceryItem => {
+                    if(groceryItem.id === action.payload.id){
+                        return {
+                            ...groceryItem,
+                            isBought: !groceryItem.isBought,
+                        };
+                    }else{
+                        return groceryItem;
+                    };
+                }),
+            };
+        }
         default: return state;
     }
 }

@@ -7,7 +7,7 @@ export const addItem = (value) => {
             content:value,
         }
     });
-}
+};
 
 export const deleteItemFromGroceryList = (id) => {
     return({
@@ -15,5 +15,24 @@ export const deleteItemFromGroceryList = (id) => {
         payload:{
             id,
         }
+    });
+};
+
+export const updateItemTitleInGroceryList = (id, newTitle) => {
+    return({
+        type: types.UPDATE_ITEM_TITLE_IN_GROCERY_LIST,
+        payload:{
+            id,
+            newTitle,
+        },
+    });
+};
+
+export const updateItemCompletionInGroceryList = (id) => {
+    return({
+        type : types.UPDATE_ITEM_COMPLETION_IN_GROCERY_LIST,
+        payload : {
+            id,
+        },
     });
 };
