@@ -9,12 +9,31 @@ import Header from './components/organisms/Header';
 function App() {
   const groceryList = useSelector(state => state.groceryList);
 
+  const returnUnpurchasedItems = () => {
+    return groceryList.map((listItem, index) => {
+        if(!listItem.isBought){
+          return <GroceryListItem key={listItem.id} listItem={listItem} />
+        }
+    });
+  };
+
+  const returnPurchasedItems = () => {
+    return groceryList.map((listItem, index) => {
+        if(listItem.isBought){
+          return <GroceryListItem key={listItem.id} listItem={listItem} />
+        }
+    });
+  };
+
   return (
     <div className="App">
       <Header title="my grocery list">Heelo</Header>
       <AddGroceryForm></AddGroceryForm>
       <GroceryListContainer>
-      {groceryList.map((listItem, index) => <GroceryListItem key={index} listItem={listItem} />)}
+        {returnUnpurchasedItems()}
+      </GroceryListContainer>
+      <GroceryListContainer>
+        {returnPurchasedItems()}
       </GroceryListContainer>
     </div>
   );
