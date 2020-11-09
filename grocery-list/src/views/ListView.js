@@ -18,13 +18,13 @@ const ListView = () => {
       });
     };
   
-    const returnPurchasedItems = () => {
-      return groceryList.map((listItem, index) => {
-          if(listItem.isBought){
-            return <GroceryListItem key={listItem.id} listItem={listItem} />
-          }
-      });
-    };
+    // const returnPurchasedItems = () => {
+    //   return groceryList.map((listItem, index) => {
+    //       if(listItem.isBought){
+    //         return <GroceryListItem key={listItem.id} listItem={listItem} />
+    //       }
+    //   });
+    // };
 
     return(
         <div>
