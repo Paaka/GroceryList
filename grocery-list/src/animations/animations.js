@@ -8,3 +8,14 @@ export const showOutOfTransparency = keyframes`
         opacity: 1
     }
 `;
+
+export const moveFromBottom = keyframes`
+    from{
+        opacity: 0;
+        transform:translateY(50px)
+    }   
+    to{
+        transform:translateY(0px)
+        opacity: 1
+    }
+`

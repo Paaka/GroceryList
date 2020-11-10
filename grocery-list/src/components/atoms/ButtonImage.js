@@ -15,7 +15,7 @@ const BtnImage = styled.div`
     transition: ease-in all 0.25s;
 
     &:hover{
-        background-color:white;
+        background-color:${props => props.hoverBgColor ? props.hoverBgColor : 'white'};
         border-radius:50px
     }
 
@@ -26,12 +26,12 @@ const BtnImage = styled.div`
 `;
 
 
-const ButtonImage = ({image, onClickFn}) => {
+const ButtonImage = ({image, onClickFn, hoverBgColor}) => {
     const onClickHandler = () => {
        onClickFn();
     }
 
-    return <BtnImage image={image} onClick={onClickHandler}></BtnImage>
+    return <BtnImage image={image} hoverBgColor={hoverBgColor} onClick={onClickHandler}></BtnImage>
 }
 
 export default ButtonImage;

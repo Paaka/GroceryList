@@ -8,9 +8,26 @@ import Heading3 from '../atoms/Heading';
 import LoginFormInput from './LoginFormInput';
 import atSVG from '../../assets/SVG/arroba.svg';
 import padlockSVG from '../../assets/SVG/padlock.svg';
+import Paragraph from '../atoms/Paragraph';
+import ButtonImage from '../atoms/ButtonImage';
+import facebookSVG from '../../assets/SVG/facebook.svg';
+import googleSVG from '../../assets/SVG/google.svg';
 
 const Wrapper = styled.div`
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    height:100%;
     animation: ${showOutOfTransparency} 1s ease-in;
+`
+
+const LoginButtonsWrapper = styled.div`
+    display:flex;
+    justify-content:center;
+`
+
+const AdditionalLoginWrapper = styled.div`
+    margin-bottom:30px;
 `
 
 const SignIn = () => {
@@ -28,8 +45,16 @@ const SignIn = () => {
         cleanInputs();
     }
 
+    const loginViaFacebook = () => {
+        console.log('Przez fejsbuka');
+    }
+    
+    const loginViaGoogle = () => {
+        console.log('Przez google');
+    }
+
     return(<Wrapper>
-        <Heading3 textTransform="uppercase" fontSize={30}>Login</Heading3>
+        <Heading3 textTransform="uppercase" fontWeight={700} fontSize={30}>Login</Heading3>
         <form onSubmit={submitHandler}>
             <LoginFormInput label="Email"
                             placeholder="Type your email"
@@ -43,10 +68,15 @@ const SignIn = () => {
                             image={padlockSVG}
                             inputValue={passwordInput} 
                             setInputFn={setPasswordInput}/>
-            <GradientButton firstGradientColor={colors.gradientPrimary}
-                            secondGradientColor={colors.gradientSecondary} 
-                            type="submit" color="white">Login</GradientButton>
+            <GradientButton type="submit" color="white">Login</GradientButton>
         </form>
+        <AdditionalLoginWrapper>
+            <Paragraph marginVertical="5px">Or sign in using :</Paragraph>
+            <LoginButtonsWrapper>
+                <ButtonImage hoverBgColor="#eee" image={facebookSVG} onClickFn={loginViaFacebook}/>
+                <ButtonImage hoverBgColor="#eee" image={googleSVG} onClickFn={loginViaGoogle} />
+            </LoginButtonsWrapper>
+        </AdditionalLoginWrapper>
     </Wrapper>)
 }
 

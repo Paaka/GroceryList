@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     display:flex;
     flex-direction:column;
     width:80%;
-    margin:15px auto;
+    margin:${props => props.verticalMargin ? props.verticalMargin : '15px'} auto;
 `
 
 const StyledInput = styled.input`

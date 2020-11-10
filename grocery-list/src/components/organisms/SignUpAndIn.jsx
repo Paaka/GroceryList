@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { showOutOfTransparency } from '../../animations/animations';
+import { moveFromBottom, showOutOfTransparency } from '../../animations/animations';
 import colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 import SignIn from '../molecules/SignIn';
@@ -9,9 +9,11 @@ import SignUp from '../molecules/SignUp';
 const Wrapper = styled.div`
     position:relative;
     width:30vw;
-    height:55vh;
+    height:75vh;
     background-color:white;
     border-radius:10px;
+    animation:1s ${moveFromBottom} ease-in;
+    
 `
 
 const StyledP = styled.p`

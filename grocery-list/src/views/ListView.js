@@ -5,6 +5,8 @@ import Header from '../components/organisms/Header';
 import AddGroceryForm from '../components/molecules/AddGroceryForm';
 import GroceryListContainer from '../components/organisms/GroceryListContainer';
 import GroceryListItem from '../components/molecules/GroceryListItem';
+import MainTemplate from '../templates/MainTemplate';
+import Sidebar from '../components/molecules/Sidebar';
 
 
 const ListView = () => {
@@ -27,8 +29,9 @@ const ListView = () => {
     // };
 
     return(
-        <div>
-            <Header title="my grocery list">Heelo</Header>
+        <MainTemplate>
+            <Sidebar isSidebarOpen={true}/>
+            <Header title="my grocery list">Heelo</Header>  
             <AddGroceryForm></AddGroceryForm>
             <GroceryListContainer>
                 {returnSelectedItems(false)}
@@ -36,7 +39,7 @@ const ListView = () => {
             <GroceryListContainer>
                 {returnSelectedItems(true)}
             </GroceryListContainer>
-        </div>
+        </MainTemplate>
     );
 }
 

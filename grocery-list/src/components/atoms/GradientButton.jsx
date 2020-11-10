@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
 
 const GradientButton = styled.button`
@@ -12,8 +13,8 @@ const GradientButton = styled.button`
     border-radius:20px;
     color:${props => props.color ? props.color : 'black'};
     background-image: linear-gradient(to right,
-    ${props => props.firstGradientColor ? props.firstGradientColor : 'orangered'},
-    ${props => props.secondGradientColor ? props.secondGradientColor : 'red'});
+    ${props => props.firstGradientColor ? props.firstGradientColor : colors.gradientPrimary},
+    ${props => props.secondGradientColor ? props.secondGradientColor : colors.gradientSecondary});
     transition:transform 0.25s ease-in;
     outline:none;
     cursor: pointer;
