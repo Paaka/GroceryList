@@ -15,11 +15,11 @@ const Wrapper = styled.div`
     border-bottom:2px solid #333;
 `
 
-const Header = () => {
+const Header = ({openSidebarFn}) => {
     const title = useSelector(state => state.listTitle);
     
     const moreOptionsHandler = () =>{
-        console.log('wincy opcji');
+        openSidebarFn();
     }
 
     return(

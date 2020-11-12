@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 
 import Header from '../components/organisms/Header';
@@ -7,10 +7,16 @@ import GroceryListContainer from '../components/organisms/GroceryListContainer';
 import GroceryListItem from '../components/molecules/GroceryListItem';
 import MainTemplate from '../templates/MainTemplate';
 import Sidebar from '../components/molecules/Sidebar';
+import MainForm from '../components/organisms/MainForm';
 
 
 const ListView = () => {
     const groceryList = useSelector(state => state.groceryList);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const toggleSidebarHandler = () => {
+        setIsSidebarOpen(!isSidebarOpen);
+    }
 
     const returnSelectedItems = (logicValue) => {
       return groceryList.map((listItem, index) => {
@@ -30,15 +36,16 @@ const ListView = () => {
 
     return(
         <MainTemplate>
-            <Sidebar isSidebarOpen={true}/>
-            <Header title="my grocery list">Heelo</Header>  
-            <AddGroceryForm></AddGroceryForm>
+            <Sidebar isSidebarOpen={isSidebarOpen} closeSidebarFn={toggleSidebarHandler}/>
+            <Header title="my grocery list" openSidebarFn={toggleSidebarHandler}>Heelo</Header>  
+            <MainForm></MainForm>
+            {/* <AddGroceryForm></AddGroceryForm>
             <GroceryListContainer>
                 {returnSelectedItems(false)}
             </GroceryListContainer>
             <GroceryListContainer>
                 {returnSelectedItems(true)}
-            </GroceryListContainer>
+            </GroceryListContainer> */}
         </MainTemplate>
     );
 }
