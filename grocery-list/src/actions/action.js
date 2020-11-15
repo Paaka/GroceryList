@@ -1,3 +1,4 @@
+import Note from '../models/Note';
 import * as types from './types';
 
 export const addItem = (value) => {
@@ -36,3 +37,10 @@ export const updateItemCompletionInGroceryList = (id) => {
         },
     });
 };
+
+export const addNote = (title, description) => {
+    return({
+        type: types.ADD_NOTE,
+        payload: new Note(title, description),
+    })
+}

@@ -1,8 +1,10 @@
+import { act } from '@testing-library/react';
 import * as types from '../actions/types';
 
 const defualtState = {
     listTitle:'My Grocery list',
     groceryList:[],
+    notes:[],
 }
 
 function reducer(state = defualtState, action){
@@ -55,6 +57,12 @@ function reducer(state = defualtState, action){
                     };
                 }),
             };
+        }
+        case types.ADD_NOTE:{
+            return{
+                ...state,
+                notes:[...state.notes, {...action.payload}],
+            }
         }
         default: return state;
     }
