@@ -1,10 +1,11 @@
 import { act } from '@testing-library/react';
 import * as types from '../actions/types';
+import Note from '../models/Note';
 
 const defualtState = {
     listTitle:'My Grocery list',
     groceryList:[],
-    notes:[],
+    notes:[new Note('title','description')],
 }
 
 function reducer(state = defualtState, action){

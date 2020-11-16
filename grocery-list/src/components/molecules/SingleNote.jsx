@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Heading3 from '../atoms/Heading';
 import Paragraph from '../atoms/Paragraph';
 
 const Container = styled.div`
     border:2px solid #ccc;
-    width:60%;
+    width:50vw;
     border-radius:10px;
     display:flex;
     flex-direction:column;
@@ -20,13 +21,16 @@ const Container = styled.div`
     }
 `
 
-const SingleNote = ({note}) => {
-    const {title, description} = note;
 
-    return(<Container>
+const SingleNote = ({note}) => {
+    const {title, description,id} = note;
+
+    return(<Link to={`/note/${id}`} style={{textDecoration:'none', color:"inherit"}}>
+        <Container>
             <Heading3 fontWeight={700}>{title}</Heading3>
-            <Paragraph>{description}</Paragraph>
-        </Container>)
+            <Paragraph size="14px">{description}</Paragraph>
+        </Container>
+        </Link>)
 }
 
 export default SingleNote;
