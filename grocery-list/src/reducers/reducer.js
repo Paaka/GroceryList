@@ -65,6 +65,42 @@ function reducer(state = defualtState, action){
                 notes:[...state.notes, {...action.payload}],
             }
         }
+        case types.UPDATE_NOTE_TITLE :{
+            return{
+                ...state,
+                notes: state.notes.map(note => {
+                    if(note.id === action.payload.id){
+                        return{
+                            ...note, 
+                            title:action.payload.newTitle,
+                        }
+                    }else{
+                        return note;
+                    }
+                })
+            }
+        }
+        case types.UPDATE_NOTE_DESCRIPTION :{
+            return{
+                ...state,
+                notes:state.notes.map(note => {
+                    if(note.id === action.payload.id){
+                        return {
+                            ...note,
+                            description: action.payload.newDescription,
+                        };
+                    }else{
+                        return note;
+                    };
+                }),
+            };
+        }
+        case types.DELETE_NOTE: {
+            return{
+                ...state,
+                notes:state.notes.filter(note => note.id !== action.payload.id),
+            };
+        }
         default: return state;
     }
 }

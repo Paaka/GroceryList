@@ -44,3 +44,32 @@ export const addNote = (title, description) => {
         payload: new Note(title, description),
     })
 }
+
+export const updateNoteTitle = (id, newTitle) => {
+    return({
+        type:types.UPDATE_NOTE_TITLE,
+        payload:{
+            id,
+            newTitle,
+        },
+    });
+};
+
+export const updateNoteDescription = (id, newDescription) =>{
+    return({
+        type: types.UPDATE_NOTE_DESCRIPTION,
+        payload:{
+            id,
+            newDescription
+        }
+    })
+}
+
+export const deleteNote = (id) => {
+    return({
+        type: types.DELETE_NOTE,
+        payload:{
+            id,
+        },
+    });
+}

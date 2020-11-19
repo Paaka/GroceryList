@@ -1,7 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link, Redirect, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, Redirect, useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import { deleteNote, updateNoteDescription, updateNoteTitle } from '../actions/action';
 import MainTemplate from '../templates/MainTemplate';
 
 const Container = styled.div`
@@ -18,8 +19,23 @@ const Container = styled.div`
 `
 
 const SingleNoteView = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
     const noteIDFromPath = parseInt(useLocation().pathname.split('/')[2]);
     const [note] = useSelector(state => state.notes).filter(note => note.id === noteIDFromPath);
+
+    const udpateTitleHandler = (e) => {
+        dispatch(updateNoteTitle(noteIDFromPath,e.target.value));
+    }
+
+    const updateDescriptionHandler = e => {
+        dispatch(updateNoteDescription(note.id, e.target.value));
+    }
+
+    const deleteNoteHandler = () => {
+        dispatch(deleteNote(note.id));
+        history.push('/');
+    }
 
     if(note === undefined){
         return (<Redirect to="/"></Redirect>);
@@ -27,9 +43,10 @@ const SingleNoteView = () => {
     else{
         return(<MainTemplate>
                     <Container>
-                        <input value={note.title}/>
-                        <textarea value={note.description}/>
+                        <input value={note.title} onChange={udpateTitleHandler}/>
+                        <textarea value={note.description} onChange={updateDescriptionHandler}/>
                         <Link to="/">Save</Link>
+                        <button onClick={deleteNoteHandler}>Delete</button>
                     </Container>
                 </MainTemplate>);    
     }

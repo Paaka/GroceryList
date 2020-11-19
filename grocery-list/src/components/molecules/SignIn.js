@@ -12,6 +12,7 @@ import Paragraph from '../atoms/Paragraph';
 import ButtonImage from '../atoms/ButtonImage';
 import facebookSVG from '../../assets/SVG/facebook.svg';
 import googleSVG from '../../assets/SVG/google.svg';
+import { signInWithGoogle } from '../../firebase/firebase';
 
 const Wrapper = styled.div`
     display:flex;
@@ -50,7 +51,7 @@ const SignIn = () => {
     }
     
     const loginViaGoogle = () => {
-        console.log('Przez google');
+        signInWithGoogle();
     }
 
     return(<Wrapper>
