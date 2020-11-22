@@ -8,6 +8,7 @@ import LoginFormInput from './LoginFormInput';
 import atSVG from '../../assets/SVG/at.svg';
 import padlockSVG from '../../assets/SVG/padlock.svg';
 import GradientButton from '../atoms/GradientButton';
+import firebase from '../../firebase/firebase';
 
 const Wrapper = styled.div`
     animation: ${showOutOfTransparency} 1s ease-in;
@@ -27,9 +28,12 @@ const SignUp = () => {
     const [passwordInput, setPasswordInput] = useState('');
     const [repeatedPassword, setRepeatedPassword] = useState('');
 
-    const onSubmitHandler = (e) => {
+    const registerUser = async (e) => {
         e.preventDefault();
-        console.log(emailInput, passwordInput, repeatedPassword);
+        if(passwordInput === repeatedPassword){
+            const {user} = await firebase.auth().createUserWithEmailAndPassword(emailInput, passwordInput);
+            console.log(user.uid);
+        }
     }
 
     return(
@@ -39,7 +43,7 @@ const SignUp = () => {
                  textTransform="uppercase" 
                  fontSize={30}
             >Register</Heading3>
-            <form onSubmit={onSubmitHandler}>
+            <form onSubmit={registerUser}>
                 <LoginFormInput label="Email"
                                 placeholder="Type your email"
                                 image={atSVG}

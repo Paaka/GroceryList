@@ -1,4 +1,5 @@
 import Note from '../models/Note';
+import User from '../models/User';
 import * as types from './types';
 
 export const addItem = (value) => {
@@ -73,3 +74,10 @@ export const deleteNote = (id) => {
         },
     });
 }
+
+export const loginUser = (uid, email) => {
+    return({
+        type: types.LOGIN_USER,
+        payload: new User(email,uid),
+    });
+};

@@ -6,6 +6,7 @@ const defualtState = {
     listTitle:'My Grocery list',
     groceryList:[],
     notes:[new Note('title','description')],
+    user:null,
 }
 
 function reducer(state = defualtState, action){
@@ -99,6 +100,12 @@ function reducer(state = defualtState, action){
             return{
                 ...state,
                 notes:state.notes.filter(note => note.id !== action.payload.id),
+            };
+        }
+        case types.LOGIN_USER:{
+            return{
+                ...state,
+                user:action.payload,
             };
         }
         default: return state;

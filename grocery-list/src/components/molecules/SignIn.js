@@ -12,7 +12,10 @@ import Paragraph from '../atoms/Paragraph';
 import ButtonImage from '../atoms/ButtonImage';
 import facebookSVG from '../../assets/SVG/facebook.svg';
 import googleSVG from '../../assets/SVG/google.svg';
-import { signInWithGoogle } from '../../firebase/firebase';
+import firebase, { signInWithGoogle } from '../../firebase/firebase';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../actions/action';
+import { useHistory } from 'react-router-dom';
 
 const Wrapper = styled.div`
     display:flex;
@@ -34,15 +37,23 @@ const AdditionalLoginWrapper = styled.div`
 const SignIn = () => {
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState('');
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const cleanInputs = () => {
         setEmailInput('');
         setPasswordInput('');
     }
 
-    const submitHandler = e =>{
+
+    
+
+    const submitHandler = async e =>{
         e.preventDefault();
-        console.log(emailInput, passwordInput);
+        const {user} = await firebase.auth().signInWithEmailAndPassword(emailInput,passwordInput);
+        const uid = user.uid;
+        dispatch(loginUser(uid, emailInput));
+        history.push('/')
         cleanInputs();
     }
 
@@ -50,8 +61,13 @@ const SignIn = () => {
         console.log('Przez fejsbuka');
     }
     
-    const loginViaGoogle = () => {
-        signInWithGoogle();
+    const loginViaGoogle = async () => {
+        await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+        const res = await signInWithGoogle();
+        const email = res.additionalUserInfo.profile.email;
+        const uid = res.user.uid;
+        dispatch(loginUser(uid,email));
+        history.push('/');
     }
 
     return(<Wrapper>
