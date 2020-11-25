@@ -35,8 +35,8 @@ const AdditionalLoginWrapper = styled.div`
 `
 
 const SignIn = () => {
-    const [emailInput, setEmailInput] = useState("");
-    const [passwordInput, setPasswordInput] = useState('');
+    const [emailInput, setEmailInput] = useState("t@t.pl");
+    const [passwordInput, setPasswordInput] = useState('qwerty');
     const dispatch = useDispatch();
     const history = useHistory();
 

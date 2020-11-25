@@ -60,6 +60,21 @@ function reducer(state = defualtState, action){
                 }),
             };
         }
+        case types.UPDATE_NOTE_IS_SELECTED:{
+            return{
+                ...state,
+                notes: state.notes.map(note => {
+                    if(note.id === action.payload.id){
+                        return{
+                            ...note,
+                            isSelected: action.payload.isSelected,
+                        }
+                    }else{
+                        return note;
+                    };
+                }),
+            };
+        }
         case types.ADD_NOTE:{
             return{
                 ...state,

@@ -66,6 +66,16 @@ export const updateNoteDescription = (id, newDescription) =>{
     })
 }
 
+export const updateNoteIsSelected = (id, isSelected) => {
+    return({
+        type:types.UPDATE_NOTE_IS_SELECTED,
+        payload:{
+            id,
+            isSelected,
+        },
+    });
+};
+
 export const deleteNote = (id) => {
     return({
         type: types.DELETE_NOTE,

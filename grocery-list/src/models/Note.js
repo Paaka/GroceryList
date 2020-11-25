@@ -3,6 +3,7 @@ class Note{
         this.id = Date.now();
         this.title = title;
         this.description = description;
+        this.isSelected = false;
     }
 }
 
