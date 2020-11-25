@@ -15,3 +15,5 @@ export const UPDATE_NOTE_DESCRIPTION = "UPDATE_NOTE_DESCRIPTION";
 export const DELETE_NOTE = 'DELETE_NOTE';
 
 export const LOGIN_USER = 'LOGIN_USER';
+
+export const LOGOUT_USER = 'LOGOUT_USER'

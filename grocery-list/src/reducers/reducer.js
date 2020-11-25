@@ -108,6 +108,12 @@ function reducer(state = defualtState, action){
                 user:action.payload,
             };
         }
+        case types.LOGOUT_USER:{
+            return{
+                ...state,
+                user:action.payload,
+            }
+        }
         default: return state;
     }
 }

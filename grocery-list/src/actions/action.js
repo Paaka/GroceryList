@@ -81,3 +81,10 @@ export const loginUser = (uid, email) => {
         payload: new User(email,uid),
     });
 };
+
+export const logoutUser = () => {
+    return({
+        type: types.LOGOUT_USER,
+        payload :null,
+    })
+}
