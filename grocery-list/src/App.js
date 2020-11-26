@@ -5,6 +5,7 @@ import './App.css';
 import ListView from './views/ListView';
 import LoginView from './views/LoginView';
 import SingleNoteView from './views/SingleNoteView';
+import UserView from './views/UserView';
 
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
           </Route>
           <Route path="/note/:id">
             <SingleNoteView></SingleNoteView>
+          </Route>
+          <Route path="/user">
+            <UserView></UserView>
           </Route>
         </Switch>
       </Router>

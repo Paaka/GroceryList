@@ -5,29 +5,46 @@ import Heading3 from '../atoms/Heading';
 import ButtonImage from '../atoms/ButtonImage';
 import MoreSVG from '../../assets/SVG/more.svg';
 import { logoutUser } from '../../actions/action';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import firebase from '../../firebase/firebase';
+import logoutSVG from '../../assets/SVG/logout.svg';
+import DivImage from '../atoms/DivImage';
+import userSvg from '../../assets/SVG/user.svg';
+import SearchNote from '../molecules/SearchNote';
 
 const Wrapper = styled.div`
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
+    box-sizing:border-box;
+    display:flex;
+    margin-left:100px;
     align-items:center;
-    justify-content:center;
-    width:100vw;
-    height:10vh;
-    border-bottom:2px solid #333;
+    justify-content:space-between;
+    width:calc(100vw-100px);
+    height:6vh;
 `
 
-const Header = ({openSidebarFn}) => {
+const UserItemsContainter = styled.div`
+    display:flex;
+    justify-content:flex-end;
+    align-self:center;
+    margin:20px;
+`
+
+const LoggedUserItems = ({logoutHandler}) => {
+    return (<UserItemsContainter>
+        <ButtonImage onClickFn={logoutHandler} image={logoutSVG} hoverBgColor="#ccc">Wyloguj</ButtonImage>
+        <Link to="/user">
+            <DivImage image={userSvg}/>
+        </Link>
+    </UserItemsContainter>)
+}
+
+
+const Header = () => {
     const dipsatch = useDispatch();
-    const {listTitle, user }= useSelector(state => state);
-    
-    const moreOptionsHandler = () =>{
-        firebase.auth().signOut();
-        openSidebarFn();
-    }
+    const { user }= useSelector(state => state);
 
     const logoutHandler = () => {
+        firebase.auth().signOut();
         dipsatch(logoutUser());
         
     }
@@ -37,7 +54,7 @@ const Header = ({openSidebarFn}) => {
         if(user === null){
             return <Redirect to="/login"></Redirect>
         }else{
-            return <button onClick={logoutHandler}>Wyloguj</button>
+            return <LoggedUserItems logoutHandler={logoutHandler}/>
         }
     }
 
@@ -45,8 +62,7 @@ const Header = ({openSidebarFn}) => {
 
     return(
         <Wrapper>
-            <ButtonImage hoverBgColor="#eee" image={MoreSVG} onClickFn={moreOptionsHandler}/>
-            <Heading3>{listTitle}</Heading3> 
+            <SearchNote />
             {checkIfUserIsLoggedIn()}
         </Wrapper>
         );

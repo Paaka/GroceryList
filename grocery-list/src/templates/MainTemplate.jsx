@@ -10,15 +10,11 @@ const Container = styled.div`
 `
 
 const MainTemplate = ({children}) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-    const toggleSidebarHandler = () => {
-        setIsSidebarOpen(!isSidebarOpen);
-    }
+    
 
      return(<Container>
-                <Sidebar isSidebarOpen={isSidebarOpen} closeSidebarFn={toggleSidebarHandler}/>
-                <Header title="my grocery list" openSidebarFn={toggleSidebarHandler}>Heelo</Header>  
+                <Sidebar />
+                <Header title="my grocery list" >Heelo</Header>  
                 {children}
             </Container>
     );
