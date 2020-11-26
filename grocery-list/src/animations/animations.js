@@ -19,3 +19,15 @@ export const moveFromBottom = keyframes`
         opacity: 1
     }
 `
+
+export const spinAnimation = keyframes`
+    0%{  
+        transform:rotate(0deg);
+    }
+    50%{
+        transform:rotate(90deg) scale(0.75);
+    }
+    100%{
+        transform:rotate(180deg) scale(1);
+    }
+`
