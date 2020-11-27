@@ -48,7 +48,7 @@ const ColorContainer = styled.div`
 `
 
 const ColorsContainer = styled.div`
-    display:${props => props.show ? 'block' : 'none'};
+    display:block;
 `
 
 
@@ -61,7 +61,7 @@ const Sidebar = () => {
         setTimeout(()=>{
             setAnimate(false);
             setIsColorsVisible(!isColorsVisible);
-        },500);
+        },300);
     }
 
     return(
@@ -75,22 +75,14 @@ const Sidebar = () => {
                         onClick={openNotesColors}
                         animate={animate}
                          />
-                    <ColorsContainer show={isColorsVisible}>
-                        <ColorBtn bgColor={colors.cardColors.green} delay={0} />
-                        <ColorBtn bgColor={colors.cardColors.orange} delay={0.4} />
-                        <ColorBtn bgColor={colors.cardColors.oragered} delay={0.7} />
-                        <ColorBtn bgColor={colors.cardColors.purlple} delay={1} />
-                        <ColorBtn bgColor={colors.cardColors.blue} delay={1.4} />
-                    {/* // <ColorBtn bgColor={colors.cardColors.green} show={true}></ColorBtn>
-                    // <ColorBtn bgColor={colors.cardColors.orange} 
-                    //           delay={0.5}
-                    //           onAnimationStart={()=>{setIsColorShow(true)}}
-                    //           show={isColorShow}></ColorBtn> */}
-                    {/* <ColorBtn bgColor={colors.cardColors.oragered} delay={1}></ColorBtn>
-                    <ColorBtn bgColor={colors.cardColors.purlple} delay={1.5}></ColorBtn>
-                    <ColorBtn bgColor={colors.cardColors.blue} delay={2}></ColorBtn> */}
-                    </ColorsContainer>
-                
+                        {isColorsVisible ?
+                        <ColorsContainer> 
+                            <ColorBtn bgColor={colors.cardColors.green} delay={0} />
+                            <ColorBtn bgColor={colors.cardColors.orange} delay={0.4} />
+                            <ColorBtn bgColor={colors.cardColors.oragered} delay={0.7} />
+                            <ColorBtn bgColor={colors.cardColors.purlple} delay={1} />
+                            <ColorBtn bgColor={colors.cardColors.blue} delay={1.4} />
+                        </ColorsContainer> : null}    
             </ColorContainer>
         </Container>
     )

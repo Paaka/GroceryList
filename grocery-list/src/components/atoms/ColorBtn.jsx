@@ -14,7 +14,7 @@ const Wrapper = styled.div`
     cursor: pointer;
     animation:${showOutOfTransparency} 0.3s ease-in-out;
     animation-delay:${props => props.delay + 's'};
-    visibility:${props => props.show ? `visible` : 'hidden'};
+    visibility:${props => props.show ? 'visible' : 'hidden'};
 
     :hover{
         transform:scale(2);
@@ -22,16 +22,19 @@ const Wrapper = styled.div`
 `
 
 const ColorBtn = ({bgColor, delay}) => {
-    const [isAnimationStarted, setIsAnimationStarted] = useState(false);
+    const [isColorVisible, setIsColorVisible] = useState(false);
     
+    useEffect(()=>{
+        setIsColorVisible(false);
+    },[])
 
-    const changeVisibility = () => setIsAnimationStarted(true);
+    const changeVisibility = () => setIsColorVisible(true);
 
     return <Wrapper
                 delay={delay}
                 bgColor={bgColor} 
                 onAnimationStart={changeVisibility}
-                show={isAnimationStarted}/>
+                show={isColorVisible}/>
 }
 
 export default ColorBtn;
