@@ -1,7 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import {useDispatch} from 'react-redux';
 import styled from 'styled-components';
+import { addNote } from '../../actions/action';
 import { showOutOfTransparency } from '../../animations/animations';
 
 const Wrapper = styled.div`
@@ -21,8 +23,9 @@ const Wrapper = styled.div`
     }
 `
 
-const ColorBtn = ({bgColor, delay}) => {
+const ColorBtn = ({bgColor, delay, closeContainerFn}) => {
     const [isColorVisible, setIsColorVisible] = useState(false);
+    const dispatch = useDispatch();
     
     useEffect(()=>{
         setIsColorVisible(false);
@@ -30,7 +33,13 @@ const ColorBtn = ({bgColor, delay}) => {
 
     const changeVisibility = () => setIsColorVisible(true);
 
+    const createNote = () => {
+        dispatch(addNote('Title','This is Keeper note.', bgColor));
+        closeContainerFn(false);
+    }
+
     return <Wrapper
+                onClick={createNote}
                 delay={delay}
                 bgColor={bgColor} 
                 onAnimationStart={changeVisibility}

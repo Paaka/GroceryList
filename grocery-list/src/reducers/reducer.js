@@ -1,11 +1,12 @@
 import { act } from '@testing-library/react';
 import * as types from '../actions/types';
+import colors from '../constants/colors';
 import Note from '../models/Note';
 
 const defualtState = {
     listTitle:'My Grocery list',
     groceryList:[],
-    notes:[new Note('title','description')],
+    notes:[new Note('title','description', colors.cardColors.purlple)],
     user:null,
 }
 

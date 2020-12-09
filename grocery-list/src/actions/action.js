@@ -39,10 +39,10 @@ export const updateItemCompletionInGroceryList = (id) => {
     });
 };
 
-export const addNote = (title, description) => {
+export const addNote = (title, description, color) => {
     return({
         type: types.ADD_NOTE,
-        payload: new Note(title, description),
+        payload: new Note(title, description, color),
     })
 }
 

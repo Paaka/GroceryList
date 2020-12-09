@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import colors from '../../constants/colors';
 import Fonts from '../../constants/fonts';
@@ -25,8 +26,8 @@ const NotesGrid = styled.div`
     margin-top:3vh;
     margin-left:5vh;
     display:grid;
-    grid-template-columns:repeat(5,300px);
-    grid-template-rows:repeat(2,320px);
+    grid-template-columns:repeat(5,18vw);
+    grid-template-rows:repeat(2,30vh);
     grid-gap:25px;
     width:calc(100%-5vh);
     height:88vh;
@@ -34,6 +35,20 @@ const NotesGrid = styled.div`
 
 const AllNotesWrapper = () => {
     const {fontWeights} = Fonts.montserrat;
+    const Notes = useSelector(state => state.notes);
+
+    const returnNotesOrMessage = () => {
+        if(Notes.length > 0){
+            return Notes.map(note =>  <Note 
+                key={note.id}
+                id={note.id}
+                title={note.title}
+                description={note.description}
+                noteColor={note.color}/>)
+        }else {
+            return <h1>You don't have any notes 💔</h1>
+        }
+    }
 
     return (<Wrapper>
                 <HeadingWrapper>
@@ -43,16 +58,7 @@ const AllNotesWrapper = () => {
                     >Notes</Heading3>     
                 </HeadingWrapper>  
                 <NotesGrid>
-                    <Note noteColor={colors.cardColors.orange}/>
-                    <Note noteColor={colors.cardColors.purlple}/>       
-                    <Note noteColor={colors.cardColors.oragered}/>
-                    <Note noteColor={colors.cardColors.green}/>
-                    <Note noteColor={colors.cardColors.orange}/>
-                    <Note noteColor={colors.cardColors.orange}/>
-                    <Note noteColor={colors.cardColors.blue}/>  
-                    <Note noteColor={colors.cardColors.purlple}/>       
-                    <Note noteColor={colors.cardColors.oragered}/>
-                    <Note noteColor={colors.cardColors.green}/>  
+                    {returnNotesOrMessage()}
                 </NotesGrid>
             </Wrapper>)
 }
