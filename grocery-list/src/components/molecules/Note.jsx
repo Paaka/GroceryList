@@ -4,8 +4,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { updateNoteDescription, updateNoteTitle } from '../../actions/action';
 import { showOutOfTransparency } from '../../animations/animations';
-import ButtonImage from '../atoms/ButtonImage';
 import { useHistory } from 'react-router-dom';
+import EditIcon from '../../assets/SVG/edit.svg';
+import NoteCircleBtn from '../atoms/NotesAtoms/NoteCircleBtn';
 
 const Container = styled.div`
     position:relative;
@@ -39,15 +40,7 @@ const StyledTextarea = styled.textarea`
     background-color:transparent;
 `
 
-const StyledBtn = styled.div`
-    position:absolute;
-    background-color:red;
-    width:20px;
-    height:20px;
-    visibility: ${props => props.isVisible ? 'visible' : 'hidden'};
-    right:10px;
-    bottom:10px;
-`
+
 
 
 
@@ -84,7 +77,7 @@ const Note = ({noteColor, title, description, id}) => {
             >
                 <StyledInput value={title} onChange={updateNoteTitleHandler} type="text"></StyledInput>
                 <StyledTextarea value={description} onChange={updateNoteDescriptionHandler}></StyledTextarea>
-                <StyledBtn isVisible={isMouseOver} onClick={redirectToNoteView}/>
+                <NoteCircleBtn bottom={10} right={10} bgImage={EditIcon} isVisible={isMouseOver} onClickFn={redirectToNoteView}/>
             </Container>
 }
 

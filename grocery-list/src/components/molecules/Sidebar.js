@@ -8,6 +8,7 @@ import plusSVG from '../../assets/SVG/plus.svg'
 import { showOutOfTransparency, spinAnimation } from '../../animations/animations';
 import colors from '../../constants/colors';
 import ColorBtn from '../atoms/ColorBtn';
+import StyledLink from '../atoms/StyledLink';
 
 const Container = styled.div`
     background-color:white;
@@ -66,10 +67,12 @@ const Sidebar = () => {
 
     return(
         <Container >
-            <LogoWrapper>
-                <DivImage width={30} height={30} bgSize={20}  image={logoSVG} />
-                <Heading3 fontWeight={600}>Keeper</Heading3>
-            </LogoWrapper> 
+            <StyledLink to="/">
+                <LogoWrapper>
+                    <DivImage width={30} height={30} bgSize={20}  image={logoSVG} />
+                    <Heading3 fontWeight={600}>Keeper</Heading3>
+                </LogoWrapper> 
+            </StyledLink>
             <ColorContainer>
                 <AddNoteBtn 
                         onClick={openNotesColors}
